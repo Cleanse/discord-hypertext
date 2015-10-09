@@ -1,0 +1,22 @@
+{
+    "name": "cleanse/discord-php",
+    "description": "An unofficial PHP API wrapper for the Discord client (http://discordapp.com).",
+    "authors": [
+        {
+            "name": "Paul Lovato",
+            "email": "plovato@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "guzzlehttp/guzzle": "^6.0"
+    },
+    "require-dev": {
+        "vlucas/phpdotenv": "^2.0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Discord\\": "src/"
+        }
+    }
+}
