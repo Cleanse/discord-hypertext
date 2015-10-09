@@ -5,15 +5,16 @@ use Discord\DiscordAuthentication;
 
 class Discord
 {
-    protected $client;
+    public $client;
 
     public function __construct($email, $password)
     {
         $this->client = new DiscordAuthentication($email, $password);
     }
 
-    public function who()
+    public function user()
     {
-        return $this->client;
+        $user = new DiscordUser($this->client);
+        return $user;
     }
 }

@@ -6,8 +6,8 @@ use Discord\DiscordHelper;
 
 class DiscordAuthentication
 {
-    protected $token;
-    protected $user;
+    public $token;
+    public $user;
 
     public function __construct($email, $password)
     {
@@ -18,6 +18,17 @@ class DiscordAuthentication
     {
         $this->getToken($email, $password);
         $this->getUser();
+    }
+
+    public function logout()
+    {
+        $guzzle = new DiscordHelper;
+        try {
+            $guzzle->request('post', 'auth/logout');
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+        return true;
     }
 
     private function getToken($email, $password)
@@ -55,16 +66,5 @@ class DiscordAuthentication
             throw new DiscordLoginFailedException($e->getMessage());
         }
         $this->user = json_decode($response->getBody()->getContents());
-    }
-
-    public function logout()
-    {
-        $guzzle = new DiscordHelper;
-        try {
-            $guzzle->request('post', 'auth/logout');
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());
-        }
-        return true;
     }
 }
