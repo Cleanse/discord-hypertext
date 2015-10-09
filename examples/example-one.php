@@ -13,3 +13,4 @@ $password = getenv('DISCORD_PASSWORD');
 $discord = new Discord($email_address, $password);
 header('Content-Type: application/json');
 echo json_encode($discord->user());
+//echo json_encode($discord->guild('81616490922520576'));

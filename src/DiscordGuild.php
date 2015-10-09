@@ -4,6 +4,7 @@ namespace Discord;
 use Discord\DiscordHelper;
 use Discord\DiscordRole;
 use Discord\DiscordGuildMember;
+use GuzzleHttp\Exception\RequestException;
 
 class DiscordGuild
 {
@@ -56,17 +57,21 @@ class DiscordGuild
 
     private function getMembers($guild)
     {
-        $guzzle = new DiscordHelper;
-        $request = $guzzle->request('get', 'guilds/'.$guild.'/members', [
-            'headers' => [
-                'authorization' => $this->client->token
-            ]
-        ]);
-        $decoded = json_decode($request->getBody()->getContents());
         $members = [];
-        foreach($decoded as $member)
-        {
-            $members[] = new DiscordGuildMember($member);
+        try {
+            $guzzle = new DiscordHelper;
+            $request = $guzzle->request('get', 'guilds/'.$guild.'/members', [
+                'headers' => [
+                    'authorization' => $this->client->token
+                ]
+            ]);
+
+            $decoded = json_decode($request->getBody()->getContents());
+            foreach($decoded as $member) {
+                $members[] = new DiscordGuildMember($member);
+            }
+        } catch (RequestException $e) {
+            $members = 'Not authorized.';
         }
         return $members;
     }

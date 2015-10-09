@@ -18,10 +18,17 @@ class Discord
         return $user;
     }
 
-    public function guild()
+    public function guild($guildId)
     {
-        $user = new DiscordGuild($this->client);
-        return $user;
+        $guzzle = new DiscordHelper;
+        $request = $guzzle->request('get', 'guilds/'.$guildId, [
+            'headers' => [
+                'authorization' => $this->client->token
+            ]
+        ]);
+        $decoded = json_decode($request->getBody()->getContents());
+        $guild = new DiscordGuild($decoded, $this->client);
+        return $guild;
     }
 
     public function channel()
