@@ -2,38 +2,48 @@
 namespace Discord;
 
 use Discord\DiscordGuild;
+use Discord\DiscordHelper;
 
 class DiscordUser
 {
-    protected $client;
-    public $user;
+    protected $user;
+    public $id;
+    public $email;
+    public $username;
+    public $avatar;
+    public $verified;
+    public $guilds;
 
-    public function __construct($client)
+    public function __construct($user)
     {
-        $this->client = $client;
-        $this->user = $client->user;
-        $this->user->avatar = $this->getAvatar();
+        $this->user = $user;
+        $this->id = $this->user->user->id;
+        $this->email = $this->user->user->email;
+        $this->username = $this->user->user->username;
+        $this->avatar = $this->getAvatar();
+        $this->verified = $this->user->user->verified;
+
+        $this->guilds = $this->guilds();
     }
 
     private function getAvatar()
     {
-        return 'https://discordapp.com/api/users/'.$this->client->user->id.'/avatars/'.$this->client->user->avatar.'.jpg';
+        return 'https://discordapp.com/api/users/'.$this->user->user->id.'/avatars/'.$this->user->user->avatar.'.jpg';
     }
 
     public function guilds()
     {
         $guzzle = new DiscordHelper;
-        $request = $guzzle->request('get', 'users/'.$this->client->user->id.'/guilds', [
+        $request = $guzzle->request('get', 'users/'.$this->user->user->id.'/guilds', [
             'headers' => [
-                'authorization' => $this->client->token
+                'authorization' => $this->user->token
             ]
         ]);
-
         $decoded = json_decode($request->getBody()->getContents());
         $guilds = [];
         foreach($decoded as $guild)
         {
-            $guilds[] = new DiscordGuild($guild->id, $guild->name, $this->client);
+            $guilds[] = new DiscordGuild($guild, $this->user);
         }
         return $guilds;
     }

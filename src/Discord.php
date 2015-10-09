@@ -17,4 +17,15 @@ class Discord
         $user = new DiscordUser($this->client);
         return $user;
     }
+
+    public function guild()
+    {
+        $user = new DiscordGuild($this->client);
+        return $user;
+    }
+
+    public function channel()
+    {
+        //to do
+    }
 }

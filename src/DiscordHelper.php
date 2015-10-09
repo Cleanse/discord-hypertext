@@ -17,4 +17,14 @@ class DiscordHelper
         }
         return $request;
     }
+
+    public function toJson($object)
+    {
+        return json_encode($object);
+    }
+
+    public function toArray($object)
+    {
+        return json_decode(json_encode($object), true);
+    }
 }

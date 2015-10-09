@@ -12,5 +12,4 @@ $password = getenv('DISCORD_PASSWORD');
 // Try log into Discord!
 $discord = new Discord($email_address, $password);
 header('Content-Type: application/json');
-$discordObj = (object) array_merge((array) $discord->user(), (array) $discord->user()->guilds());
-echo json_encode($discordObj);
+echo json_encode($discord->user());
