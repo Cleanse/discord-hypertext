@@ -14,7 +14,7 @@ class DiscordHelper
 
     public function toJson($object)
     {
-        return json_decode($object->getBody());
+        return json_encode($object);
     }
 
     public function toArray($object)
