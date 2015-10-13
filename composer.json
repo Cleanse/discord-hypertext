@@ -1,6 +1,9 @@
 {
     "name": "cleanse/discord-php",
     "description": "An unofficial PHP API wrapper for the Discord client (http://discordapp.com).",
+    "homepage": "https://github.com/Cleanse/discord-php",
+    "keywords": ["discord", "discordapp", "api"],
+    "license": "MIT",
     "authors": [
         {
             "name": "Paul Lovato",
@@ -15,8 +18,6 @@
         "vlucas/phpdotenv": "^2.0.1"
     },
     "autoload": {
-        "psr-4": {
-            "Discord\\": "src/"
-        }
+        "psr-4": { "Discord\\": "src/" }
     }
 }
