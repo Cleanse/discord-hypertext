@@ -35,4 +35,21 @@ class Discord
     {
         //to do
     }
+
+    public function message($channel, $limit = 50, $before = null) //needs try catch
+    {
+        $params = '?limit='.$limit;
+        if(!is_null($before)) {
+            $params .= '&before='.$before;
+        }
+        $guzzle = new DiscordHelper;
+        $request = $guzzle->request('get', 'channels/'.$channel.'/messages'.$params, [
+            'headers' => [
+                'authorization' => $this->client->token
+            ]
+        ]);
+        $decoded = json_decode($request->getBody()->getContents());
+        $messages = new DiscordMessage($decoded, $this->client);
+        return $decoded;
+    }
 }

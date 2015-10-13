@@ -6,44 +6,45 @@ use Discord\DiscordHelper;
 
 class DiscordUser
 {
-    protected $user;
+    protected $client;
     public $id;
-    public $email;
     public $username;
     public $avatar;
-    public $verified;
     public $guilds;
+    protected $email;
+    protected $verified;
 
     public function __construct($user)
     {
-        $this->user = $user;
-        $this->id = $this->user->user->id;
-        $this->email = $this->user->user->email;
-        $this->username = $this->user->user->username;
-        $this->avatar = $this->getAvatar();
-        $this->verified = $this->user->user->verified;
+        $this->client = $user;
+
+        $this->id = $this->client->user->id;
+        $this->email = $this->client->user->email;
+        $this->username = $this->client->user->username;
+        $this->avatar = $this->setAvatar();
+        $this->verified = $this->client->user->verified;
 
         $this->guilds = $this->guilds();
     }
 
-    private function getAvatar()
+    private function setAvatar()
     {
-        return 'https://discordapp.com/api/users/'.$this->user->user->id.'/avatars/'.$this->user->user->avatar.'.jpg';
+        return 'https://discordapp.com/api/users/'.$this->client->user->id.'/avatars/'.$this->client->user->avatar.'.jpg';
     }
 
     public function guilds()
     {
         $guzzle = new DiscordHelper;
-        $request = $guzzle->request('get', 'users/'.$this->user->user->id.'/guilds', [
+        $request = $guzzle->request('get', 'users/'.$this->client->user->id.'/guilds', [
             'headers' => [
-                'authorization' => $this->user->token
+                'authorization' => $this->client->token
             ]
         ]);
         $decoded = json_decode($request->getBody()->getContents());
         $guilds = [];
         foreach($decoded as $guild)
         {
-            $guilds[] = new DiscordGuild($guild, $this->user);
+            $guilds[] = new DiscordGuild($guild, $this->client);
         }
         return $guilds;
     }

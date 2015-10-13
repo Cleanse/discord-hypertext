@@ -14,20 +14,21 @@ class DiscordGuild
     public $icon;
     public $region;
     public $joined_at;
-    public $afk_channel_id;
-    public $afk_timeout;
-    public $embed_channel_id;
-    public $embed_enabled;
-    public $owner_id;
-    public $roles;
-    public $members;
+    protected $afk_channel_id;
+    protected $afk_timeout;
+    protected $embed_channel_id;
+    protected $embed_enabled;
+    protected $owner_id;
+    protected $roles;
+    protected $members;
+    protected $channels;
 
     public function __construct($guild, $client)
     {
         $this->client = $client;
         $this->id = $guild->id;
         $this->name = $guild->name;
-        $this->icon = $this->getIcon($guild->id, $guild->icon);
+        $this->icon = $this->setIcon($guild->id, $guild->icon);
         $this->region = $guild->region;
         $this->joined_at = $guild->joined_at;
         $this->afk_channel_id = $guild->afk_channel_id;
@@ -38,9 +39,10 @@ class DiscordGuild
 
         $this->roles = $this->getRoles($guild->roles);
         $this->members = $this->getMembers($guild->id);
+        $this->channels = $this->getChannels($guild->id);
     }
 
-    private function getIcon($id, $icon)
+    private function setIcon($id, $icon)
     {
         return 'https://discordapp.com/api/guilds/'.$id.'/icons/'.$icon.'.jpg';
     }
@@ -65,7 +67,6 @@ class DiscordGuild
                     'authorization' => $this->client->token
                 ]
             ]);
-
             $decoded = json_decode($request->getBody()->getContents());
             foreach($decoded as $member) {
                 $members[] = new DiscordGuildMember($member);
@@ -74,5 +75,26 @@ class DiscordGuild
             $members = 'Not authorized.';
         }
         return $members;
+    }
+
+    private function getChannels($guild)
+    {
+        $channels = [];
+        try {
+            $guzzle = new DiscordHelper;
+            $request = $guzzle->request('get', 'guilds/'.$guild.'/channels', [
+                'headers' => [
+                    'authorization' => $this->client->token
+                ]
+            ]);
+
+            $decoded = json_decode($request->getBody()->getContents());
+            foreach($decoded as $channel) {
+                $channels[] = new DiscordChannel($channel);
+            }
+        } catch (RequestException $e) {
+            $channels = 'Not authorized.';
+        }
+        return $channels;
     }
 }

@@ -21,4 +21,15 @@ class DiscordHelper
     {
         return json_decode(json_encode($object), true);
     }
+
+    public function with($relations)
+    {
+        if (is_string($relations)) {
+            $relations = func_get_args();
+        }
+
+        $instance = new self;
+
+        return $instance->with($relations);
+    }
 }
