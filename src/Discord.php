@@ -42,10 +42,6 @@ class Discord
             case 'guilds':
                 $api = new Api\Guild($this);
                 break;
-            case 'rank':
-            case 'ranks':
-                $api = new Api\Rank($this);
-                break;
             case 'channel':
             case 'channels':
                 $api = new Api\Channel($this);
