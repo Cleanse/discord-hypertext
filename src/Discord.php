@@ -1,55 +1,109 @@
 <?php
 namespace Discord;
 
-use Discord\DiscordAuthentication;
+use Discord\Api\ApiInterface;
+use Discord\Exception\InvalidArgumentException;
+use Discord\Exception\BadMethodCallException;
+use Discord\HttpClient\HttpClient;
+use Discord\HttpClient\HttpClientInterface;
 
 class Discord
 {
-    public $client;
+    private $options = array(
+        'base_url'    => 'https://discordapp.com/api/',
+        'user_agent'  => 'discord-php (https://github.com/Cleanse/discord-php)'
+    );
 
-    public function __construct($email, $password)
+    private $httpClient;
+    public $token;
+
+    public function __construct($email, $password, HttpClientInterface $httpClient = null)
     {
-        $this->client = new DiscordAuthentication($email, $password);
+        $this->httpClient = $httpClient;
+        $this->token = $this->authenticate($email, $password);
     }
 
-    public function user()
+    public function api($name)
     {
-        $user = new DiscordUser($this->client);
-        return $user;
-    }
-
-    public function guild($guildId)
-    {
-        $guzzle = new DiscordHelper;
-        $request = $guzzle->request('get', 'guilds/'.$guildId, [
-            'headers' => [
-                'authorization' => $this->client->token
-            ]
-        ]);
-        $decoded = json_decode($request->getBody()->getContents());
-        $guild = new DiscordGuild($decoded, $this->client);
-        return $guild;
-    }
-
-    public function channel()
-    {
-        //to do
-    }
-
-    public function message($channel, $limit = 50, $before = null) //needs try catch
-    {
-        $params = '?limit='.$limit;
-        if(!is_null($before)) {
-            $params .= '&before='.$before;
+        switch ($name) {
+            case 'authentication':
+                $api = new Api\Authentication($this);
+                break;
+            case 'me':
+            case 'current_user':
+            case 'currentUser':
+                $api = new Api\CurrentUser($this);
+                break;
+            case 'user':
+            case 'users':
+                $api = new Api\User($this);
+                break;
+            case 'guild':
+            case 'guilds':
+                $api = new Api\Guild($this);
+                break;
+            case 'rank':
+            case 'ranks':
+                $api = new Api\Rank($this);
+                break;
+            case 'channel':
+            case 'channels':
+                $api = new Api\Channel($this);
+                break;
+            case 'message':
+            case 'messages':
+                $api = new Api\Message($this);
+                break;
+            default:
+                throw new InvalidArgumentException(sprintf('Undefined api instance called: "%s"', $name));
         }
-        $guzzle = new DiscordHelper;
-        $request = $guzzle->request('get', 'channels/'.$channel.'/messages'.$params, [
-            'headers' => [
-                'authorization' => $this->client->token
-            ]
-        ]);
-        $decoded = json_decode($request->getBody()->getContents());
-        $messages = new DiscordMessage($decoded, $this->client);
-        return $decoded;
+        return $api;
+    }
+
+    public function authenticate($email, $password)
+    {
+        try {
+            return $this->api('authentication')->login($email, $password);
+        } catch (InvalidArgumentException $e) {
+            throw new BadMethodCallException(sprintf('Undefined method called: "%s"', 'Authentication'));
+        }
+    }
+
+    public function getHttpClient()
+    {
+        if (null === $this->httpClient) {
+            $this->httpClient = new HttpClient($this->options);
+        }
+        return $this->httpClient;
+    }
+
+    public function setHttpClient(HttpClientInterface $httpClient)
+    {
+        $this->httpClient = $httpClient;
+    }
+
+    public function getOption($name)
+    {
+        if (!array_key_exists($name, $this->options)) {
+            throw new InvalidArgumentException(sprintf('Undefined option called: "%s"', $name));
+        }
+        return $this->options[$name];
+    }
+
+    public function setOption($name, $value)
+    {
+        if (!array_key_exists($name, $this->options)) {
+            throw new InvalidArgumentException(sprintf('Undefined option called: "%s"', $name));
+        }
+        $this->options[$name] = $value;
+    }
+
+    public function __call($name, $args)
+    {
+        try {
+            return $this->api($name);
+        } catch (InvalidArgumentException $e) {
+            throw new BadMethodCallException(sprintf('Undefined method called: "%s"', $name));
+        }
     }
 }

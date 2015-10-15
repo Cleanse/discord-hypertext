@@ -1,7 +1,8 @@
 <?php
 namespace Discord\Api;
 
-class ApiInterface
+interface ApiInterface
 {
-
+    public function getPerPage();
+    public function setPerPage($perPage);
 }
