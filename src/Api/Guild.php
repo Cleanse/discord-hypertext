@@ -22,12 +22,24 @@ class Guild extends AbstractApi
             ]);
     }
 
-    public function create($data)
+    public function create($name, $region)
     {
         return $this->request('POST', 'guilds', [
             'headers' => ['authorization' => $this->token],
-                'form_params' => $data
+                'form_params' => ['name' => $name, 'region' => $region]
         ]);
+    }
+
+    public function leave($guildId)
+    {
+        return $this->request('DELETE', 'guilds/'.$guildId, [
+            'headers' => ['authorization' => $this->token]
+        ]);
+    }
+
+    public function edit()
+    {
+        //tbd
     }
 
     public function roles()
