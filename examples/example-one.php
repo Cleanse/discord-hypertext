@@ -13,4 +13,8 @@ $password = getenv('DISCORD_PASSWORD');
 $discord = new Discord($email_address, $password);
 
 header('Content-Type: application/json');
-echo json_encode($discord->api('guild')->roles()->all('_your_guild_id_here_'));
+$data = [
+    'name' => 'Kappaville',
+    'region' => 'us-west'
+];
+echo json_encode($discord->api('guild')->create($data));

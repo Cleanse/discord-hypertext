@@ -12,7 +12,39 @@ $discord->api('user')->guilds('user-id');
 $discord->api('message')->get('channel-id', 50);
 ```
 
-#Guild
+#Guild/Server
+- create($data)
+```php
+$data = [
+    'name' => 'Kappaville',
+    'region' => 'us-west'
+];
+```
+```json
+{
+    "afk_timeout": 300,
+    "joined_at": "2015-10-19T06:06:15.846810+00:00",
+    "afk_channel_id": null,
+    "id": "XXX",
+    "icon": null,
+    "name": "Kappaville",
+    "roles": [
+    {
+        "managed": false,
+        "name": "@everyone",
+        "color": 0,
+        "hoist": false,
+        "position": -1,
+        "id": "XXX",
+        "permissions": 36953089
+    }
+    ],
+    "region": "us-west",
+    "embed_channel_id": null,
+    "embed_enabled": false,
+    "owner_id": "XXX"
+}
+
 ```php
 $discord->api('guild')->show('guild-id');  
 $discord->api('guild')->roles();  

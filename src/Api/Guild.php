@@ -22,6 +22,14 @@ class Guild extends AbstractApi
             ]);
     }
 
+    public function create($data)
+    {
+        return $this->request('POST', 'guilds', [
+            'headers' => ['authorization' => $this->token],
+                'form_params' => $data
+        ]);
+    }
+
     public function roles()
     {
         return new Role($this->client);

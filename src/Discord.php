@@ -38,6 +38,8 @@ class Discord
             case 'users':
                 $api = new Api\User($this);
                 break;
+            case 'server':
+            case 'servers':
             case 'guild':
             case 'guilds':
                 $api = new Api\Guild($this);
