@@ -76,14 +76,12 @@ $discord->api('message')->get('channel-id', 50);
     "owner_id": "XXX"
 }
 ```
-- edit($guildId <id>, $array)
-```php
-$array = [
-    'name' => <string>,
-    'afk_channel_id' => <id>,
-    'region' => <region_name>
-];
-```
+- edit($guildId <id>, $array = [])
+Options:
+1. name
+2. icon
+3. region
+4. afk_channel_id
 
 - widget($guildId <id>, $enabled <boolean>, $channelId <id>)
 - show($guildId <id>)

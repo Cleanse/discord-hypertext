@@ -25,15 +25,15 @@ class Guild extends AbstractApi
 
     /*
      * Might need to find more fields, but so far: WIP
-     * {name: <string>, afk_channel_id: <id>, region: <region_name>} are all you can change?
+     * {name: <string, required>, afk_channel_id: <id>, region: <region_name>, icon: <url_path/file_path>} are all you can change?
      */
-    public function edit($guildId, $name, $icon = null, $array = [])
+    public function edit($guildId, $array = [])
     {
-        $required['name'] = $name;
-        if(!is_null($icon)) {
-            $required['icon'] = $this->encodeIcon($icon);
-        }
-        $json = array_merge($required, $array);
+        $guild = $this->show($guildId);
+        $json['name'] = isset($array['name']) ? $array['name'] : $guild['name'];
+        $json['region'] = isset($array['region']) ? $array['region'] : $guild['region'];
+        $json['icon'] = isset($array['icon']) ? $this->encodeIcon($array['icon']) : $guild['icon'];
+        $json['afk_channel_id'] = isset($array['afk_channel_id']) ? $array['afk_channel_id'] : $guild['afk_channel_id'];
 
         return $this->request('PATCH', 'guilds/'.$guildId, [
             'headers' => ['authorization' => $this->token],
@@ -69,11 +69,11 @@ class Guild extends AbstractApi
         ]);
     }
 
-    public function regions()
+    public function icon($guildId)
     {
-        return $this->request('GET', 'voice/regions', [
-            'headers' => ['authorization' => $this->token]
-        ]);
+        $guild = $this->show($guildId);
+
+        return 'https://discordapp.com/api/guilds/'.$guildId.'/icons/'.$guild['icon'].'.jpg';
     }
 
     public function roles()

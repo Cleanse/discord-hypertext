@@ -13,5 +13,6 @@ $password = getenv('DISCORD_PASSWORD');
 $discord = new Discord($email_address, $password);
 
 header('Content-Type: application/json');
-$image = 'http://a.espncdn.com/combiner/i?img=/i/teamlogos/nfl/500/sf.png';
-echo json_encode($discord->api('server')->edit('XXX', '49ers', $image));
+$image = 'http://static-cdn.jtvnw.net/jtv_user_pictures/rabbitbong-profile_image-444fd6f17289a247-300x300.png';
+$kappa = $discord->api('server')->edit('105775765877989376', ['name' => 'DansGame', 'icon' => $image]);
+echo json_encode($kappa);
