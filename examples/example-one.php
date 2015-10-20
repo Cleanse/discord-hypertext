@@ -13,4 +13,5 @@ $password = getenv('DISCORD_PASSWORD');
 $discord = new Discord($email_address, $password);
 
 header('Content-Type: application/json');
-echo json_encode($discord->api('guild')->leave('105550767083024384'));
+$image = 'http://a.espncdn.com/combiner/i?img=/i/teamlogos/nfl/500/sf.png';
+echo json_encode($discord->api('server')->edit('XXX', '49ers', $image));

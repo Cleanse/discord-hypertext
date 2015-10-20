@@ -8,25 +8,11 @@ use Discord\Api\Guild\Role;
 
 class Guild extends AbstractApi
 {
-    private function setIcon($id, $icon)
-    {
-        return 'https://discordapp.com/api/guilds/'.$id.'/icons/'.$icon.'.jpg';
-    }
-
-    public function show($guildId)
-    {
-        return $this->request('GET', 'guilds/'.$guildId, [
-            'headers' => [
-                'authorization' => $this->token
-                ]
-            ]);
-    }
-
     public function create($name, $region)
     {
         return $this->request('POST', 'guilds', [
             'headers' => ['authorization' => $this->token],
-                'form_params' => ['name' => $name, 'region' => $region]
+            'json' => ['name' => $name, 'region' => $region]
         ]);
     }
 
@@ -37,9 +23,57 @@ class Guild extends AbstractApi
         ]);
     }
 
-    public function edit()
+    /*
+     * Might need to find more fields, but so far: WIP
+     * {name: <string>, afk_channel_id: <id>, region: <region_name>} are all you can change?
+     */
+    public function edit($guildId, $name, $icon = null, $array = [])
     {
-        //tbd
+        $required['name'] = $name;
+        if(!is_null($icon)) {
+            $required['icon'] = $this->encodeIcon($icon);
+        }
+        $json = array_merge($required, $array);
+
+        return $this->request('PATCH', 'guilds/'.$guildId, [
+            'headers' => ['authorization' => $this->token],
+            'json' => $json
+        ]);
+    }
+
+    public function encodeIcon($image)
+    {
+        $type = pathinfo($image, PATHINFO_EXTENSION);
+        $data = file_get_contents($image);
+        return 'data:image/' . $type . ';base64,' . base64_encode($data);
+    }
+
+    /*
+     * {enabled: <boolean>, channel_id: <id>}
+     */
+    public function widget($guildId, $enabled, $channelId)
+    {
+        return $this->request('PATCH', 'guilds/'.$guildId.'/embed', [
+            'headers' => ['authorization' => $this->token],
+            'json' => [
+                'channel_id' => $channelId,
+                'enabled' => $enabled
+            ]
+        ]);
+    }
+
+    public function show($guildId)
+    {
+        return $this->request('GET', 'guilds/'.$guildId, [
+            'headers' => ['authorization' => $this->token]
+        ]);
+    }
+
+    public function regions()
+    {
+        return $this->request('GET', 'voice/regions', [
+            'headers' => ['authorization' => $this->token]
+        ]);
     }
 
     public function roles()

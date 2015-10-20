@@ -14,6 +14,17 @@ $discord->api('message')->get('channel-id', 50);
 
 #Guild/Server
 - create($name, $region)
+```php
+/*
+ * Regions:
+ * us-west
+ * singapore
+ * london
+ * us-east
+ * sydney
+ * amsterdam
+ */
+```
 ```json
 {
     "afk_timeout": 300,
@@ -39,7 +50,7 @@ $discord->api('message')->get('channel-id', 50);
     "owner_id": "XXX"
 }
 ```
-- leave($guildId)
+- leave($guildId <id>)
 ```json
 {
     "afk_timeout": 300,
@@ -65,11 +76,14 @@ $discord->api('message')->get('channel-id', 50);
     "owner_id": "XXX"
 }
 ```
-
-
+- edit($guildId <id>, $array)
 ```php
-$discord->api('guild')->show('guild-id');  
-$discord->api('guild')->roles();  
-$discord->api('guild')->members();  
-$discord->api('guild')->bans();
+$array = [
+    'name' => <string>,
+    'afk_channel_id' => <id>,
+    'region' => <region_name>
+];
 ```
+
+- widget($guildId <id>, $enabled <boolean>, $channelId <id>)
+- show($guildId <id>)
