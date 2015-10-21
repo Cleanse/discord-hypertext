@@ -50,6 +50,7 @@ $discord->api('guild')->show($guildId <id>)
 #### Create New Channel
 
 > Required: guild_id <str>, name <str>
+
 > Optional: type <str> (text or voice)
 
 ```php
@@ -67,6 +68,7 @@ $discord->api('channel')->delete($channelId);
 #### Edit Channel
 
 > Required: channel_id <str>
+
 > Optional: array <array> ['name' => 'ChannelName', 'position' => 0, 'topic' => 'YourTopicName']
 
 ```php
@@ -110,6 +112,7 @@ $discord->api('message')->delete('<channel_id>', '<message_id');
 #### Edit Message
 
 > Required: id = channel_id, id = message_id, string = message content
+
 > Optional: array = mentioned user id(s)
 
 ```php
@@ -119,6 +122,7 @@ $discord->api('message')->edit('<channel_id>', '<message_id>', , '<message_strin
 #### Show Channel Messages
 
 > Required: id = channel_id
+
 > Optional: limit = 50 max, before = <message id>
 
 ```php
