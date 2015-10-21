@@ -7,10 +7,7 @@ class Authentication extends AbstractApi
     {
         return $this->request('POST', 'auth/login', [
             'headers' => ['Content-Type' => 'application/json'],
-            'body' => json_encode([
-                'email' => $email,
-                'password' => $password
-            ])
+            'json' => ['email' => $email, 'password' => $password]
         ]);
     }
 }
