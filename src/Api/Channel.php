@@ -4,7 +4,7 @@ namespace Discord\Api;
 class Channel extends AbstractApi
 {
     /*
-     * {"type":"text","name":"TwitchSpamKappa123"}
+     * {"type":"text","name":"YourChannelName"}
      */
     public function create($guildId, $name, $type = 'text')
     {
@@ -22,7 +22,7 @@ class Channel extends AbstractApi
     }
 
     /*
-     * {"name":"general","position":0,"topic":"Kappaville"}
+     * {"name":"ChannelName","position":0,"topic":"YourTopicName"}
      */
     public function edit($channelId, $array)
     {
@@ -32,6 +32,9 @@ class Channel extends AbstractApi
         ]);
     }
 
+    /*
+     * Small wrapper to change topic only.
+     */
     public function topic($channelId, $topic)
     {
         return $this->edit($channelId, ['topic' => $topic]);
@@ -46,6 +49,6 @@ class Channel extends AbstractApi
 
     public function permissions()
     {
-        //TBD
+        //To do.
     }
 }

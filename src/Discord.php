@@ -29,11 +29,6 @@ class Discord
             case 'authentication':
                 $api = new Api\Authentication($this);
                 break;
-            case 'me':
-            case 'current_user':
-            case 'currentUser':
-                $api = new Api\CurrentUser($this);
-                break;
             case 'user':
             case 'users':
                 $api = new Api\User($this);
