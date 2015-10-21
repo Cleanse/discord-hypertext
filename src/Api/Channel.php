@@ -47,8 +47,8 @@ class Channel extends AbstractApi
         ]);
     }
 
-    public function permissions()
+    /*public function permissions()
     {
         //To do.
-    }
+    }*/
 }
