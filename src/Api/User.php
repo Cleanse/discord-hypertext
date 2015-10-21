@@ -3,22 +3,23 @@ namespace Discord\Api;
 
 class User extends AbstractApi
 {
-    private function setAvatar()
-    {
-        return 'https://discordapp.com/api/users/'.$this->client->user->id.'/avatars/'.$this->client->user->avatar.'.jpg';
-    }
-
     public function show($userId)
     {
-        return $this->get('users/'.$userId);
+        return $this->request('get', 'users/'.$userId, [
+            'headers' => ['authorization' => $this->token]
+        ]);
     }
 
     public function guilds($userId)
     {
         return $this->request('get', 'users/'.$userId.'/guilds', [
-            'headers' => [
-                'authorization' => $this->token
-            ]
+            'headers' => ['authorization' => $this->token]
         ]);
+    }
+
+    public function avatar($userId)
+    {
+        $user = $this->show($userId);
+        return 'https://discordapp.com/api/users/'.$userId.'/avatars/'.$user['avatar'].'.jpg';
     }
 }
