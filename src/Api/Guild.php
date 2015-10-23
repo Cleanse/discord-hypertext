@@ -24,7 +24,6 @@ class Guild extends AbstractApi
     }
 
     /*
-     * Might need to find more fields, but so far: WIP
      * {name: <string, required>, afk_channel_id: <id>, region: <region_name>, icon: <url_path/file_path>} are all you can change?
      */
     public function edit($guildId, $array = [])
