@@ -1,5 +1,5 @@
 <?php
-namespace Discord\Api\Guild;
+namespace Discord\Helpers;
 
 abstract class Bitwise
 {

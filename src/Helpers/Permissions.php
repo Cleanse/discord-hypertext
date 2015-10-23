@@ -1,15 +1,10 @@
 <?php
-namespace Discord\Api\Guild;
+namespace Discord\Helpers;
 
-use Discord\Api\Guild\Bitwise;
+use Discord\Helpers\Bitwise;
 
 class Permissions extends Bitwise
 {
-    public function __construct($perms = null)
-    {
-        $this->flags = $perms;
-    }
-
     const CREATE_INSTANT_INVITE = 0;
     const BAN_MEMBERS = 1;
     const KICK_MEMBERS = 2;
@@ -31,12 +26,10 @@ class Permissions extends Bitwise
     const VOICE_MOVE_MEMBERS = 24;
     const VOICE_USE_VOICE_ACTIVATION = 25;
 
-    /*public $perms;
-
-    public function __construct($permissions)
+    public function __construct($perms = null)
     {
-        $this->perms = $permissions;
-    }*/
+        $this->flags = $perms;
+    }
 
     public function getCreateInstantInvite(){
         return $this->isFlagSet(self::CREATE_INSTANT_INVITE);
@@ -178,31 +171,36 @@ class Permissions extends Bitwise
         $this->setFlag(self::VOICE_USE_VOICE_ACTIVATION, $value);
     }
 
-    //[36953121]
+    public function listPermissions()
+    {
+        $list = [];
+        $this->getCreateInstantInvite() ? $list[] = 'Create Instant Invite' : '';
+        $this->getBanMembers() ? $list[] = 'Ban Members' : '';
+        $this->getKickMembers() ? $list[] = 'Kick Members' : '';
+        $this->getManageRoles() ? $list[] = 'Manage Roles' : '';
+        $this->getManageChannels() ? $list[] = 'Manage Channels' : '';
+        $this->getManageServer() ? $list[] = 'Manage Server' : '';
+
+        $this->getReadMessages() ? $list[] = 'Read Messages' : '';
+        $this->getSendMessages() ? $list[] = 'Send Messages' : '';
+        $this->getSendTTSMessages() ? $list[] = 'Send TTS Messages' : '';
+        $this->getManageMessages() ? $list[] = 'Manage Messages' : '';
+        $this->getEmbedLinks() ? $list[] = 'Embed Links' : '';
+        $this->getAttachFiles() ? $list[] = 'Attach Files' : '';
+        $this->getReadMessageHistory() ? $list[] = 'Read Message History' : '';
+        $this->getMentionEveryone() ? $list[] = 'Mention Everyone' : '';
+
+        $this->getVoiceConnect() ? $list[] = 'Voice Connect' : '';
+        $this->getVoiceSpeak() ? $list[] = 'Voice Speak' : '';
+        $this->getVoiceMuteMembers() ? $list[] = 'Voice Mute Members' : '';
+        $this->getVoiceDeafenMembers() ? $list[] = 'Voice Deafen Members' : '';
+        $this->getVoiceMoveMembers() ? $list[] = 'Voice Move Members' : '';
+        $this->getVoiceUseVoiceActivation() ? $list[] = 'Voice Use Voice Activation' : '';
+
+        return $list;
+    }
+
     public function __toString(){
-        return '[' .
-        ($this->getCreateInstantInvite() ? 'InstaInv ' : '') .
-        ($this->getBanMembers() ? 'BanMems ' : '') .
-        ($this->getKickMembers() ? 'KickMems ' : '') .
-        ($this->getManageRoles() ? 'ManRoles ' : '') .
-        ($this->getManageChannels() ? 'ManChans ' : '') .
-        ($this->getManageServer() ? 'ManServ ' : '') .
-
-        ($this->getReadMessages() ? 'ReadMess ' : '') .
-        ($this->getSendMessages() ? 'SendMess ' : '') .
-        ($this->getSendTTSMessages() ? 'SendTTS ' : '') .
-        ($this->getManageMessages() ? 'ManMess ' : '') .
-        ($this->getEmbedLinks() ? 'EmbLink ' : '') .
-        ($this->getAttachFiles() ? 'AttFiles ' : '') .
-        ($this->getReadMessageHistory() ? 'ReadMessHist ' : '') .
-        ($this->getMentionEveryone() ? 'MenEveryone ' : '') .
-
-        ($this->getVoiceConnect() ? 'VConn' : '') .
-        ($this->getVoiceSpeak() ? 'VSpeak' : '') .
-        ($this->getVoiceMuteMembers() ? 'VMute' : '') .
-        ($this->getVoiceDeafenMembers() ? 'VDeaf' : '') .
-        ($this->getVoiceMoveMembers() ? 'VMove' : '') .
-        ($this->getVoiceUseVoiceActivation() ? 'VActivate' : '') .
-        ']';
+        return (string)$this->flags;
     }
 }
