@@ -29,10 +29,6 @@ class Discord
             case 'authentication':
                 $api = new Api\Authentication($this);
                 break;
-            case 'user':
-            case 'users':
-                $api = new Api\User($this);
-                break;
             case 'server':
             case 'servers':
             case 'guild':
@@ -46,6 +42,14 @@ class Discord
             case 'message':
             case 'messages':
                 $api = new Api\Message($this);
+                break;
+            case 'user':
+            case 'users':
+                $api = new Api\User($this);
+                break;
+            case 'region':
+            case 'regions':
+                $api = new Api\Region($this);
                 break;
             default:
                 throw new InvalidArgumentException(sprintf('Undefined api instance called: "%s"', $name));
