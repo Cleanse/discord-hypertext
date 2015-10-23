@@ -18,7 +18,7 @@ class Guild extends AbstractApi
 
     public function leave($guildId)
     {
-        return $this->request('DELETE', 'guilds/'.$guildId, [
+        return $this->request('DELETE', 'guilds/' . $guildId, [
             'headers' => ['authorization' => $this->token]
         ]);
     }
@@ -34,7 +34,7 @@ class Guild extends AbstractApi
         $json['icon'] = isset($array['icon']) ? $this->encodeIcon($array['icon']) : $guild['icon'];
         $json['afk_channel_id'] = isset($array['afk_channel_id']) ? $array['afk_channel_id'] : $guild['afk_channel_id'];
 
-        return $this->request('PATCH', 'guilds/'.$guildId, [
+        return $this->request('PATCH', 'guilds/' . $guildId, [
             'headers' => ['authorization' => $this->token],
             'json' => $json
         ]);
@@ -52,7 +52,7 @@ class Guild extends AbstractApi
      */
     public function widget($guildId, $enabled, $channelId)
     {
-        return $this->request('PATCH', 'guilds/'.$guildId.'/embed', [
+        return $this->request('PATCH', 'guilds/' . $guildId . '/embed', [
             'headers' => ['authorization' => $this->token],
             'json' => [
                 'channel_id' => $channelId,
@@ -63,7 +63,7 @@ class Guild extends AbstractApi
 
     public function show($guildId)
     {
-        return $this->request('GET', 'guilds/'.$guildId, [
+        return $this->request('GET', 'guilds/' . $guildId, [
             'headers' => ['authorization' => $this->token]
         ]);
     }
@@ -72,7 +72,7 @@ class Guild extends AbstractApi
     {
         $guild = $this->show($guildId);
 
-        return 'https://discordapp.com/api/guilds/'.$guildId.'/icons/'.$guild['icon'].'.jpg';
+        return 'https://discordapp.com/api/guilds/' . $guildId . '/icons/' . $guild['icon'] . '.jpg';
     }
 
     public function roles()

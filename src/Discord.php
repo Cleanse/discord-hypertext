@@ -9,10 +9,10 @@ use Discord\HttpClient\HttpClientInterface;
 
 class Discord
 {
-    private $options = array(
+    private $options = [
         'base_url'    => 'https://discordapp.com/api/',
         'user_agent'  => 'discord-php (https://github.com/Cleanse/discord-php)'
-    );
+    ];
 
     private $httpClient;
     public $token;

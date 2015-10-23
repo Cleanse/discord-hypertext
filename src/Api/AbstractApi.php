@@ -39,7 +39,7 @@ abstract class AbstractApi implements ApiInterface
         return ResponseMediator::getContent($response);
     }
 
-    protected function createJsonBody(array $parameters)
+    protected function createJsonBody($parameters = [])
     {
         return (count($parameters) === 0) ? null : json_encode($parameters, empty($parameters) ? JSON_FORCE_OBJECT : 0);
     }

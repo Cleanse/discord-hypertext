@@ -3,5 +3,5 @@ namespace Discord\HttpClient;
 
 interface HttpClientInterface
 {
-	public function request($httpMethod = 'GET', $path, array $params = []);
+	public function request($httpMethod = 'GET', $path, $params = []);
 }

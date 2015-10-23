@@ -31,143 +31,203 @@ class Permissions extends Bitwise
         $this->flags = $perms;
     }
 
-    public function getCreateInstantInvite(){
+    public function getCreateInstantInvite()
+    {
         return $this->isFlagSet(self::CREATE_INSTANT_INVITE);
     }
-    public function setCreateInstantInvite($value){
+
+    public function setCreateInstantInvite($value)
+    {
         $this->setFlag(self::CREATE_INSTANT_INVITE, $value);
     }
 
-    public function getBanMembers(){
+    public function getBanMembers()
+    {
         return $this->isFlagSet(self::BAN_MEMBERS);
     }
-    public function setBanMembers($value){
+
+    public function setBanMembers($value)
+    {
         $this->setFlag(self::BAN_MEMBERS, $value);
     }
 
-    public function getKickMembers(){
+    public function getKickMembers()
+    {
         return $this->isFlagSet(self::KICK_MEMBERS);
     }
-    public function setKickMembers($value){
+
+    public function setKickMembers($value)
+    {
         $this->setFlag(self::KICK_MEMBERS, $value);
     }
 
-    public function getManageRoles(){
+    public function getManageRoles()
+    {
         return $this->isFlagSet(self::MANAGE_ROLES);
     }
-    public function setManageRoles($value){
+
+    public function setManageRoles($value)
+    {
         $this->setFlag(self::MANAGE_ROLES, $value);
     }
 
-    public function getManageChannels(){
+    public function getManageChannels()
+    {
         return $this->isFlagSet(self::MANAGE_CHANNELS);
     }
-    public function setManageChannels($value){
+
+    public function setManageChannels($value)
+    {
         $this->setFlag(self::MANAGE_CHANNELS, $value);
     }
 
-    public function getManageServer(){
+    public function getManageServer()
+    {
         return $this->isFlagSet(self::MANAGE_SERVER);
     }
-    public function setManageServer($value){
+
+    public function setManageServer($value)
+    {
         $this->setFlag(self::MANAGE_SERVER, $value);
     }
 
-    public function getReadMessages(){
+    public function getReadMessages()
+    {
         return $this->isFlagSet(self::READ_MESSAGES);
     }
-    public function setReadMessages($value){
+
+    public function setReadMessages($value)
+    {
         $this->setFlag(self::READ_MESSAGES, $value);
     }
 
-    public function getSendMessages(){
+    public function getSendMessages()
+    {
         return $this->isFlagSet(self::SEND_MESSAGES);
     }
-    public function setSendMessages($value){
+
+    public function setSendMessages($value)
+    {
         $this->setFlag(self::SEND_MESSAGES, $value);
     }
 
-    public function getSendTTSMessages(){
+    public function getSendTTSMessages()
+    {
         return $this->isFlagSet(self::SEND_TTS_MESSAGES);
     }
-    public function setSendTTSMessages($value){
+
+    public function setSendTTSMessages($value)
+    {
         $this->setFlag(self::SEND_TTS_MESSAGES, $value);
     }
 
-    public function getManageMessages(){
+    public function getManageMessages()
+    {
         return $this->isFlagSet(self::MANAGE_MESSAGES);
     }
-    public function setManageMessages($value){
+
+    public function setManageMessages($value)
+    {
         $this->setFlag(self::MANAGE_MESSAGES, $value);
     }
 
-    public function getEmbedLinks(){
+    public function getEmbedLinks()
+    {
         return $this->isFlagSet(self::EMBED_LINKS);
     }
-    public function setEmbedLinks($value){
+
+    public function setEmbedLinks($value)
+    {
         $this->setFlag(self::EMBED_LINKS, $value);
     }
 
-    public function getAttachFiles(){
+    public function getAttachFiles()
+    {
         return $this->isFlagSet(self::ATTACH_FILES);
     }
-    public function setAttachFiles($value){
+
+    public function setAttachFiles($value)
+    {
         $this->setFlag(self::ATTACH_FILES, $value);
     }
 
-    public function getReadMessageHistory(){
+    public function getReadMessageHistory()
+    {
         return $this->isFlagSet(self::READ_MESSAGE_HISTORY);
     }
-    public function setReadMessageHistory($value){
+
+    public function setReadMessageHistory($value)
+    {
         $this->setFlag(self::READ_MESSAGE_HISTORY, $value);
     }
 
-    public function getMentionEveryone(){
+    public function getMentionEveryone()
+    {
         return $this->isFlagSet(self::MENTION_EVERYONE);
     }
-    public function setMentionEveryone($value){
+
+    public function setMentionEveryone($value)
+    {
         $this->setFlag(self::MENTION_EVERYONE, $value);
     }
 
-    public function getVoiceConnect(){
+    public function getVoiceConnect()
+    {
         return $this->isFlagSet(self::VOICE_CONNECT);
     }
-    public function setVoiceConnect($value){
+
+    public function setVoiceConnect($value)
+    {
         $this->setFlag(self::VOICE_CONNECT, $value);
     }
 
-    public function getVoiceSpeak(){
+    public function getVoiceSpeak()
+    {
         return $this->isFlagSet(self::VOICE_SPEAK);
     }
-    public function setVoiceSpeak($value){
+
+    public function setVoiceSpeak($value)
+    {
         $this->setFlag(self::VOICE_SPEAK, $value);
     }
 
-    public function getVoiceMuteMembers(){
+    public function getVoiceMuteMembers()
+    {
         return $this->isFlagSet(self::VOICE_MUTE_MEMBERS);
     }
-    public function setVoiceMuteMembers($value){
+
+    public function setVoiceMuteMembers($value)
+    {
         $this->setFlag(self::VOICE_MUTE_MEMBERS, $value);
     }
 
-    public function getVoiceDeafenMembers(){
+    public function getVoiceDeafenMembers()
+    {
         return $this->isFlagSet(self::VOICE_DEAFEN_MEMBERS);
     }
-    public function setVoiceDeafenMembers($value){
+
+    public function setVoiceDeafenMembers($value)
+    {
         $this->setFlag(self::VOICE_DEAFEN_MEMBERS, $value);
     }
 
-    public function getVoiceMoveMembers(){
+    public function getVoiceMoveMembers()
+    {
         return $this->isFlagSet(self::VOICE_MOVE_MEMBERS);
     }
-    public function setVoiceMoveMembers($value){
+
+    public function setVoiceMoveMembers($value)
+    {
         $this->setFlag(self::VOICE_MOVE_MEMBERS, $value);
     }
 
-    public function getVoiceUseVoiceActivation(){
+    public function getVoiceUseVoiceActivation()
+    {
         return $this->isFlagSet(self::VOICE_USE_VOICE_ACTIVATION);
     }
-    public function setVoiceUseVoiceActivation($value){
+
+    public function setVoiceUseVoiceActivation($value)
+    {
         $this->setFlag(self::VOICE_USE_VOICE_ACTIVATION, $value);
     }
 
@@ -200,7 +260,8 @@ class Permissions extends Bitwise
         return $list;
     }
 
-    public function __toString(){
+    public function __toString()
+    {
         return (string)$this->flags;
     }
 }

@@ -12,7 +12,7 @@ abstract class Bitwise
 
     protected function setFlag($flag, $value)
     {
-        if($value) {
+        if ($value) {
             $this->flags |= (1 << $flag);
         } else {
             $this->flags &= ~(1 << $flag);

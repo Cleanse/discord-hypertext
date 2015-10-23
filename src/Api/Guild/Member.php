@@ -7,7 +7,7 @@ class Member extends AbstractApi
 {
     public function all($guildId)
     {
-        return $this->request('GET', 'guilds/'.$guildId.'/members', [
+        return $this->request('GET', 'guilds/' . $guildId . '/members', [
             'headers' => [
                 'authorization' => $this->token
             ]
