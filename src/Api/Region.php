@@ -5,8 +5,6 @@ class Region extends AbstractApi
 {
     public function show()
     {
-        return $this->request('GET', 'voice/regions', [
-            'headers' => ['authorization' => $this->token]
-        ]);
+        return $this->request('GET', 'voice/regions');
     }
 }

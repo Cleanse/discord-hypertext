@@ -1,11 +1,9 @@
 <?php
 namespace Discord;
 
-use Discord\Api\ApiInterface;
 use Discord\Exception\InvalidArgumentException;
 use Discord\Exception\BadMethodCallException;
 use Discord\HttpClient\HttpClient;
-use Discord\HttpClient\HttpClientInterface;
 
 class Discord
 {
@@ -17,10 +15,12 @@ class Discord
     private $httpClient;
     public $token;
 
-    public function __construct($email, $password, HttpClientInterface $httpClient = null)
+    public function __construct($email, $password, HttpClient $httpClient = null)
     {
         $this->httpClient = $httpClient;
-        $this->token = $this->authenticate($email, $password);
+
+        $token = $this->authenticate($email, $password);
+        $this->httpClient->setToken($token);
     }
 
     public function api($name)
@@ -34,6 +34,10 @@ class Discord
             case 'guild':
             case 'guilds':
                 $api = new Api\Guild($this);
+                break;
+            case 'role':
+            case 'roles':
+                $api = new Api\Role($this);
                 break;
             case 'channel':
             case 'channels':

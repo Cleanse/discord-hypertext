@@ -5,16 +5,12 @@ class User extends AbstractApi
 {
     public function show($userId)
     {
-        return $this->request('get', 'users/' . $userId, [
-            'headers' => ['authorization' => $this->token]
-        ]);
+        return $this->request('get', 'users/' . $userId);
     }
 
     public function guilds($userId)
     {
-        return $this->request('get', 'users/' . $userId . '/guilds', [
-            'headers' => ['authorization' => $this->token]
-        ]);
+        return $this->request('get', 'users/' . $userId . '/guilds');
     }
 
     public function avatar($userId)

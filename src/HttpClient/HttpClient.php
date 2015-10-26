@@ -2,15 +2,16 @@
 namespace Discord\HttpClient;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Exception\RequestException;
 
-class HttpClient implements HttpClientInterface
+class HttpClient
 {
     protected $options = [
         'base_uri' => 'https://discordapp.com/api/',
         'user_agent' => 'discord-php (https://github.com/Cleanse/discord-php)'
     ];
+
+    public $token;
 
     public function __construct($options = [], Client $client = null)
     {
@@ -19,13 +20,23 @@ class HttpClient implements HttpClientInterface
         $this->client = $client;
     }
 
-    public function request($httpMethod = 'GET', $path, $options = [])
+    public function request($httpMethod = 'GET', $path, $options = [], $auth = false)
     {
+        if (!$auth) {
+            $options['headers'] = [
+                'authorization' => $this->token
+            ];
+        }
         try {
             $response = $this->client->request($httpMethod, $this->options['base_uri'].$path, $options);
         } catch (RequestException $e) {
             throw $e;
         }
         return $response;
+    }
+
+    public function setToken($token)
+    {
+        $this->token = $token;
     }
 }

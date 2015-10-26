@@ -11,16 +11,16 @@ class Guild extends AbstractApi
     public function create($name, $region)
     {
         return $this->request('POST', 'guilds', [
-            'headers' => ['authorization' => $this->token],
-            'json' => ['name' => $name, 'region' => $region]
+            'json' => [
+                'name' => $name,
+                'region' => $region
+            ]
         ]);
     }
 
     public function leave($guildId)
     {
-        return $this->request('DELETE', 'guilds/' . $guildId, [
-            'headers' => ['authorization' => $this->token]
-        ]);
+        return $this->request('DELETE', 'guilds/' . $guildId);
     }
 
     /*
@@ -35,7 +35,6 @@ class Guild extends AbstractApi
         $json['afk_channel_id'] = isset($array['afk_channel_id']) ? $array['afk_channel_id'] : $guild['afk_channel_id'];
 
         return $this->request('PATCH', 'guilds/' . $guildId, [
-            'headers' => ['authorization' => $this->token],
             'json' => $json
         ]);
     }
@@ -50,10 +49,9 @@ class Guild extends AbstractApi
     /*
      * {enabled: <boolean>, channel_id: <id>}
      */
-    public function widget($guildId, $enabled, $channelId)
+    public function widget($guildId, $enabled, $channelId = '')
     {
         return $this->request('PATCH', 'guilds/' . $guildId . '/embed', [
-            'headers' => ['authorization' => $this->token],
             'json' => [
                 'channel_id' => $channelId,
                 'enabled' => $enabled
@@ -63,9 +61,7 @@ class Guild extends AbstractApi
 
     public function show($guildId)
     {
-        return $this->request('GET', 'guilds/' . $guildId, [
-            'headers' => ['authorization' => $this->token]
-        ]);
+        return $this->request('GET', 'guilds/' . $guildId);
     }
 
     public function icon($guildId)

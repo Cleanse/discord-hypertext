@@ -7,11 +7,7 @@ class Bans extends AbstractApi
 {
     public function all($guildId)
     {
-        return $this->request('GET', 'guilds/' . $guildId . '/bans', [
-            'headers' => [
-                'authorization' => $this->token
-            ]
-        ]);
+        return $this->request('GET', 'guilds/' . $guildId . '/bans');
     }
 
     public function add($guildId, $array)

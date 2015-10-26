@@ -10,6 +10,16 @@ class Authentication extends AbstractApi
                 'email' => $email,
                 'password' => $password
             ]
-        ]);
+        ], true);
+    }
+
+    public function logout()
+    {
+        return $this->request('POST', 'auth/logout');
+    }
+
+    public function gateway()
+    {
+        return $this->request('GET', 'gateway');
     }
 }

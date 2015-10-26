@@ -9,7 +9,6 @@ class Channel extends AbstractApi
     public function create($guildId, $name, $type = 'text')
     {
         return $this->request('POST', 'guilds/' . $guildId . '/channels', [
-            'headers' => ['authorization' => $this->token],
             'json' => [
                 'type' => $type,
                 'name' => $name
@@ -19,9 +18,7 @@ class Channel extends AbstractApi
 
     public function delete($channelId)
     {
-        return $this->request('DELETE', 'channels/' . $channelId, [
-            'headers' => ['authorization' => $this->token]
-        ]);
+        return $this->request('DELETE', 'channels/' . $channelId);
     }
 
     /*
@@ -30,7 +27,6 @@ class Channel extends AbstractApi
     public function edit($channelId, $array)
     {
         return $this->request('PATCH', 'channels/' . $channelId, [
-            'headers' => ['authorization' => $this->token],
             'json' => $array
         ]);
     }
@@ -45,13 +41,11 @@ class Channel extends AbstractApi
 
     public function show($guildId)
     {
-        return $this->request('GET', 'guilds/' . $guildId . '/channels', [
-            'headers' => ['authorization' => $this->token]
-        ]);
+        return $this->request('GET', 'guilds/' . $guildId . '/channels');
     }
 
-    /*public function permissions()
+    public function get($channelId)
     {
-        //To do.
-    }*/
+        return $this->request('GET', 'channels/' . $channelId);
+    }
 }

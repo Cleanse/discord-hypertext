@@ -15,7 +15,6 @@ class Message extends AbstractApi
     public function create($channelId, $content, $mentions = [], $tts = 'false')
     {
         return $this->request('POST', 'channels/' . $channelId . '/messages', [
-            'headers' => ['authorization' => $this->token],
             'json' => [
                 'content' => $content,
                 'mentions' => $mentions,
@@ -26,9 +25,7 @@ class Message extends AbstractApi
 
     public function delete($channelId, $messageId)
     {
-        return $this->request('DELETE', 'channels/' . $channelId . '/messages/' . $messageId, [
-            'headers' => ['authorization' => $this->token]
-        ]);
+        return $this->request('DELETE', 'channels/' . $channelId . '/messages/' . $messageId);
     }
 
     /*
@@ -37,7 +34,6 @@ class Message extends AbstractApi
     public function edit($channelId, $messageId, $content, $mentions)
     {
         return $this->request('PATCH', 'channels/' . $channelId . '/messages/' . $messageId, [
-            'headers' => ['authorization' => $this->token],
             'json' => [
                 'content' => $content,
                 'mentions' => $mentions
@@ -51,8 +47,6 @@ class Message extends AbstractApi
         if (!is_null($before)) {
             $params .= '&before=' . $before;
         }
-        return $this->request('get', 'channels/' . $channel . '/messages' . $params, [
-            'headers' => ['authorization' => $this->token]
-        ]);
+        return $this->request('get', 'channels/' . $channel . '/messages' . $params);
     }
 }
