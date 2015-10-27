@@ -3,9 +3,9 @@ namespace Discord\Api\Guild;
 
 use Discord\Api\AbstractApi;
 
-class Invite extends AbstractApi
+class Invites extends AbstractApi
 {
-    public function get($guildId)
+    public function view($guildId)
     {
         //POST https://discordapp.com/api/invite/:id_or_xkcd
     }

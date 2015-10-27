@@ -2,9 +2,10 @@
 namespace Discord\Api;
 
 use Discord\Api\Guild\Bans;
-use Discord\Api\Guild\Invite;
-use Discord\Api\Guild\Member;
-use Discord\Api\Guild\Role;
+use Discord\Api\Guild\Channels;
+use Discord\Api\Guild\Invites;
+use Discord\Api\Guild\Members;
+use Discord\Api\Guild\Roles;
 
 class Guild extends AbstractApi
 {
@@ -39,7 +40,7 @@ class Guild extends AbstractApi
         ]);
     }
 
-    public function encodeIcon($image)
+    private function encodeIcon($image)
     {
         $type = pathinfo($image, PATHINFO_EXTENSION);
         $data = file_get_contents($image);
@@ -49,7 +50,7 @@ class Guild extends AbstractApi
     /*
      * {enabled: <boolean>, channel_id: <id>}
      */
-    public function widget($guildId, $enabled, $channelId = '')
+    public function toggleWidget($guildId, $enabled, $channelId = '')
     {
         return $this->request('PATCH', 'guilds/' . $guildId . '/embed', [
             'json' => [
@@ -59,7 +60,7 @@ class Guild extends AbstractApi
         ]);
     }
 
-    public function show($guildId)
+    public function view($guildId)
     {
         return $this->request('GET', 'guilds/' . $guildId);
     }
@@ -71,14 +72,19 @@ class Guild extends AbstractApi
         return 'https://discordapp.com/api/guilds/' . $guildId . '/icons/' . $guild['icon'] . '.jpg';
     }
 
+    public function channels()
+    {
+        return new Channels($this->client);
+    }
+
     public function roles()
     {
-        return new Role($this->client);
+        return new Roles($this->client);
     }
 
     public function members()
     {
-        return new Member($this->client);
+        return new Members($this->client);
     }
 
     public function bans()
@@ -88,6 +94,6 @@ class Guild extends AbstractApi
 
     public function invites()
     {
-        return new Invite($this->client);
+        return new Invites($this->client);
     }
 }
