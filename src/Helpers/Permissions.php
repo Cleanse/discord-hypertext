@@ -26,7 +26,7 @@ class Permissions extends Bitwise
     const VOICE_MOVE_MEMBERS = 24;
     const VOICE_USE_VOICE_ACTIVATION = 25;
 
-    public function __construct($perms = null)
+    public function __construct($perms = 36953089)
     {
         $this->flags = $perms;
     }
@@ -36,7 +36,7 @@ class Permissions extends Bitwise
         return $this->isFlagSet(self::CREATE_INSTANT_INVITE);
     }
 
-    public function setCreateInstantInvite($value)
+    public function setCreateInstantInvite($value = true)
     {
         $this->setFlag(self::CREATE_INSTANT_INVITE, $value);
     }
@@ -46,7 +46,7 @@ class Permissions extends Bitwise
         return $this->isFlagSet(self::BAN_MEMBERS);
     }
 
-    public function setBanMembers($value)
+    public function setBanMembers($value = false)
     {
         $this->setFlag(self::BAN_MEMBERS, $value);
     }
@@ -56,7 +56,7 @@ class Permissions extends Bitwise
         return $this->isFlagSet(self::KICK_MEMBERS);
     }
 
-    public function setKickMembers($value)
+    public function setKickMembers($value = false)
     {
         $this->setFlag(self::KICK_MEMBERS, $value);
     }
@@ -66,7 +66,7 @@ class Permissions extends Bitwise
         return $this->isFlagSet(self::MANAGE_ROLES);
     }
 
-    public function setManageRoles($value)
+    public function setManageRoles($value = false)
     {
         $this->setFlag(self::MANAGE_ROLES, $value);
     }
@@ -76,7 +76,7 @@ class Permissions extends Bitwise
         return $this->isFlagSet(self::MANAGE_CHANNELS);
     }
 
-    public function setManageChannels($value)
+    public function setManageChannels($value = false)
     {
         $this->setFlag(self::MANAGE_CHANNELS, $value);
     }
@@ -86,7 +86,7 @@ class Permissions extends Bitwise
         return $this->isFlagSet(self::MANAGE_SERVER);
     }
 
-    public function setManageServer($value)
+    public function setManageServer($value = false)
     {
         $this->setFlag(self::MANAGE_SERVER, $value);
     }
@@ -260,8 +260,8 @@ class Permissions extends Bitwise
         return $list;
     }
 
-    public function __toString()
+    public function finalPermissions()
     {
-        return (string)$this->flags;
+        return (int)$this->flags;
     }
 }
