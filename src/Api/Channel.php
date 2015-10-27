@@ -1,6 +1,8 @@
 <?php
 namespace Discord\Api;
 
+use Discord\Api\Channel\Permissions;
+
 class Channel extends AbstractApi
 {
     /*
@@ -39,13 +41,13 @@ class Channel extends AbstractApi
         return $this->edit($channelId, ['topic' => $topic]);
     }
 
-    public function show($guildId)
-    {
-        return $this->request('GET', 'guilds/' . $guildId . '/channels');
-    }
-
-    public function get($channelId)
+    public function view($channelId)
     {
         return $this->request('GET', 'channels/' . $channelId);
+    }
+
+    public function permissions()
+    {
+        return new Permissions($this->client);
     }
 }
