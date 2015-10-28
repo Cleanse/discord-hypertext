@@ -1,4 +1,4 @@
-# discord-php
+# discord-hypertext
 An unofficial PHP API wrapper for the Discord client (http://discordapp.com).  
 
 ## Getting Started
@@ -13,9 +13,15 @@ An unofficial PHP API wrapper for the Discord client (http://discordapp.com).
 To install, run the following (assuming composer is in your PATH)
 
 ```sh
-composer require cleanse/discord-php
+composer require cleanse/discord-hypertext
 ```
 
 This will install the current master branch.
 
+### Usage
+
+##### [Check out the examples][examples]
+
 `New docs coming soonTM.`
+
+[examples]: examples/
