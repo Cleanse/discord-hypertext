@@ -15,18 +15,33 @@ use Discord\Api\AbstractApi;
 
 class Bans extends AbstractApi
 {
-    public function add($guildId, $memberId, $days = 1)
+    /**
+     * @param string $guildId
+     * @param string $memberId
+     * @param int    $days
+     * @return empty
+     */
+    public function create($guildId, $memberId, $days = 1)
     {
 
         return $this->request('PUT', 'guilds/' . $guildId . '/bans/' . $memberId . '?delete-message-days=' . $days);
     }
 
-    public function remove($guildId, $memberId)
+    /**
+     * @param string $guildId
+     * @param string $memberId
+     * @return empty
+     */
+    public function delete($guildId, $memberId)
     {
         return $this->request('DELETE', 'guilds/' . $guildId . '/bans/' . $memberId);
     }
 
-    public function view($guildId)
+    /**
+     * @param string $guildId
+     * @return array
+     */
+    public function show($guildId)
     {
         return $this->request('GET', 'guilds/' . $guildId . '/bans');
     }

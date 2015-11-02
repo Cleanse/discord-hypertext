@@ -39,6 +39,9 @@ class Discord
             case 'authentication':
                 $api = new Api\Authentication($this);
                 break;
+            case 'invite':
+                $api = new Api\Invite($this);
+                break;
             case 'server':
             case 'servers':
             case 'guild':
