@@ -13,6 +13,11 @@ namespace Discord\Api;
 
 class Authentication extends AbstractApi
 {
+    /**
+     * @param string $email
+     * @param string $password
+     * @return array
+     */
 	public function login($email, $password)
     {
         return $this->request('POST', 'auth/login', [
@@ -23,13 +28,11 @@ class Authentication extends AbstractApi
         ], true);
     }
 
+    /**
+     * @return array
+     */
     public function logout()
     {
         return $this->request('POST', 'auth/logout');
-    }
-
-    public function gateway()
-    {
-        return $this->request('GET', 'gateway');
     }
 }
