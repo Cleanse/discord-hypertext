@@ -1,5 +1,5 @@
-###Guild Channels
-[Back to Guild](../Guild.md)
+### Guild Channels API
+[Back to the Guild API](../Guild.md)
 
 #### Show Guild Channels
 

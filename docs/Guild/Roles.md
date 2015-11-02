@@ -1,5 +1,5 @@
-###Guild Roles
-[Back to Guild](../Guild.md)
+### Guild Roles API
+[Back to the Guild API](../Guild.md)
 
 #### Create Guild Role
 

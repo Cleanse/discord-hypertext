@@ -1,5 +1,5 @@
-###Guild Invites
-[Back to Guild](../Guild.md)
+### Guild Invites API
+[Back to the Guild API](../Guild.md)
 
 #### Show Guild Invites List
 

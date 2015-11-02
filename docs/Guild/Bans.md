@@ -1,5 +1,5 @@
-###Guild Bans
-[Back to Guild](../Guild.md)
+### Guild Bans API
+[Back to the Guild API](../Guild.md)
 
 #### Create Guild Ban
 

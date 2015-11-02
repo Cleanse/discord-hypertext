@@ -1,5 +1,5 @@
-###Guild Members
-[Back to Guild](../Guild.md)
+### Guild Members API
+[Back to the Guild API](../Guild.md)
 
 #### Show Guild Members List
 
