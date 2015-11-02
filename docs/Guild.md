@@ -1,6 +1,15 @@
 ###Guilds/Servers
 A 'guild' is Discord's name for server.
 
+> Also see:
+>
+- [Guild Bans](Guild/Bans.md)
+- [Guild Channels](Guild/Channels.md)
+- [Guild Invites](Guild/Invites.md)
+- [Guild Members](Guild/Members.md)
+- [Guild Roles](Guild/Roles.md)
+>
+
 #### Create Guild
 
 ```php
