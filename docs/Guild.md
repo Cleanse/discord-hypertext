@@ -22,7 +22,7 @@ print_r($guild);
 
 Returns an array with details about your new server.
   
-> Full list of [regions](Region.md)
+> Full list of [regions](Regions.md)
 
 #### Edit Guild
 
