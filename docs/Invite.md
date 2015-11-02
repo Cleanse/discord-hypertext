@@ -1,5 +1,5 @@
-### Invite
-[Back to main](README.md)
+### Invite API
+[Back to main Readme](README.md)
 
 #### Accept Guild Invite
 

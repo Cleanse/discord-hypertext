@@ -1,5 +1,5 @@
-###Regions
-[Back to main](README.md)
+### Regions API
+[Back to main Readme](README.md)
 
 #### Show Discord Regions
 

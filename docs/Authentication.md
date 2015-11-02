@@ -1,5 +1,5 @@
-### Authentication
-[Back to main](README.md)
+### Authentication API
+[Back to main Readme](README.md)
 
 #### Login to Discord
 

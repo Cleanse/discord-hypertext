@@ -1,5 +1,5 @@
 ### Gateway
-[Back to main](README.md)
+[Back to main Readme](README.md)
 
 #### Show Discord Gateway
 

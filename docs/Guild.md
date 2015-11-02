@@ -1,5 +1,5 @@
-###Guilds/Servers
-[Back to main](README.md)
+### Guild API
+[Back to main Readme](README.md)
 
 A 'guild' is Discord's name for server.
 
