@@ -1,4 +1,6 @@
 ###Guilds/Servers
+[Back to main](README.md)
+
 A 'guild' is Discord's name for server.
 
 > Also see:

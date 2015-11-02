@@ -20,7 +20,7 @@ $discord->api('guild')->roles()->create($guildId, $roleName, $permissions->final
 
 Returns an array of the Role's details.
 
-> Read more on how to use [helpers](Helpers.md).
+> Read more on how to use [helpers](../Helpers.md).
 
 #### Edit Guild Role
 
