@@ -20,11 +20,9 @@ This will install the current master branch.
 
 ### Usage
 
-##### [Check out the examples][examples]
+##### [Check out the docs][docs]
 
-### Complete
-- Guild: create, edit, delete, toggleWidget, view, icon
-- Guild Roles: create, edit, delete
-
+##### [Check out the example][examples]
 
 [examples]: examples/
+[docs]: docs/
