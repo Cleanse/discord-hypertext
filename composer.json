@@ -1,29 +1,29 @@
 {
-    "name":        "cleanse/discord-hypertext",
-    "description": "An unofficial PHP API wrapper for the Discord client (http://discordapp.com).",
-    "homepage":    "https://github.com/Cleanse/discord-hypertext",
-    "keywords":    [
-        "discord",
-        "discordapp",
-        "api"
-    ],
-    "license":     "MIT",
-    "authors":     [
-        {
-            "name":  "Paul Lovato",
-            "email": "plovato@gmail.com"
-        }
-    ],
-    "require":     {
-        "php":               ">=5.5.9",
-        "guzzlehttp/guzzle": "^6.1"
-    },
-    "require-dev": {
-        "vlucas/phpdotenv": "^2.0.1"
-    },
-    "autoload":    {
-        "psr-4": {
-            "Discord\\": "src/"
-        }
+  "name": "cleanse/discord-hypertext",
+  "description": "An unofficial PHP API wrapper for the Discord client (http://discordapp.com).",
+  "homepage": "https://github.com/Cleanse/discord-hypertext",
+  "keywords": [
+    "discord",
+    "discordapp",
+    "api"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Paul Lovato",
+      "email": "plovato@gmail.com"
     }
+  ],
+  "require": {
+    "php": ">=5.5.9",
+    "guzzlehttp/guzzle": "^6.1"
+  },
+  "require-dev": {
+    "vlucas/phpdotenv": "^2.0.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Discord\\": "src/"
+    }
+  }
 }

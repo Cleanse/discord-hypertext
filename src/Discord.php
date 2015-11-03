@@ -39,34 +39,25 @@ class Discord
             case 'authentication':
                 $api = new Api\Authentication($this);
                 break;
-            case 'invite':
-                $api = new Api\Invite($this);
-                break;
-            case 'server':
-            case 'servers':
-            case 'guild':
-            case 'guilds':
-                $api = new Api\Guild($this);
-                break;
-            case 'role':
-            case 'roles':
-                $api = new Api\Role($this);
-                break;
             case 'channel':
             case 'channels':
                 $api = new Api\Channel($this);
                 break;
-            case 'message':
-            case 'messages':
-                $api = new Api\Message($this);
+            case 'gateway':
+                $api = new Api\Gateway($this);
+                break;
+            case 'guild':
+                $api = new Api\Guild($this);
+                break;
+            case 'invite':
+                $api = new Api\Invite($this);
+                break;
+            case 'regions':
+                $api = new Api\Region($this);
                 break;
             case 'user':
             case 'users':
                 $api = new Api\User($this);
-                break;
-            case 'region':
-            case 'regions':
-                $api = new Api\Region($this);
                 break;
             default:
                 throw new InvalidArgumentException(sprintf('Undefined api instance called: "%s"', $name));

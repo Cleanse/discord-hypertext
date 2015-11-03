@@ -44,8 +44,8 @@ class Mentions
     {
         $closure = $this->discord;
         return preg_replace_callback('/<#([\w_\.]+)>/', function($m) use ($closure) {
-            if ($closure->api('channel')->get($m[1])['name']) {
-                return '#'.$closure->api('channel')->get($m[1])['name'];
+            if ($closure->api('channel')->show($m[1])['name']) {
+                return '#'.$closure->api('channel')->show($m[1])['name'];
             }
             return '#'.$m[1];
         }, $message);
