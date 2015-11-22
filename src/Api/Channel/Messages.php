@@ -66,12 +66,17 @@ class Messages extends AbstractApi
      * @param string|null   $before
      * @return array
      */
-    public function show($channel, $limit = 50, $before = null)
+    public function show($channel, $limit = 50, $before = null, $after = null)
     {
         $params = '?limit=' . $limit;
         if (!is_null($before)) {
             $params .= '&before=' . $before;
         }
+
+        if (!is_null($after)) {
+            $params .= '&after=' . $after;
+        }
+
         return $this->request('get', 'channels/' . $channel . '/messages' . $params);
     }
 }
