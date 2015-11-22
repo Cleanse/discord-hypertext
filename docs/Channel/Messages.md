@@ -52,9 +52,10 @@ $discord = new Discord($email_address, $password);
 $channelId = '<channel_id>';
 $limit = 1;
 $before = '<message_id>';
-$discord->api('channel')->messages()->show($channelId, $limit, $before);
+$after = '<message_id>';
+$discord->api('channel')->messages()->show($channelId, $limit, $before, $after);
 ```
 
 Returns an array of message(s).
 
-> Default limit is 50. Before parameter is optional.
+> Default limit is 50. Before and after parameters is optional.
