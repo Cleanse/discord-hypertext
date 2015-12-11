@@ -17,20 +17,14 @@ use Discord\HttpClient\HttpClient;
 
 class Discord
 {
-    private $options = [
-        'base_url'    => 'https://discordapp.com/api/',
-        'user_agent'  => 'discord-php (https://github.com/Cleanse/discord-php)'
-    ];
-
     private $httpClient;
     public $token;
 
-    public function __construct($email, $password, HttpClient $httpClient = null)
+    public function __construct($email, $password)
     {
-        $this->httpClient = $httpClient;
-
-        $token = $this->authenticate($email, $password);
-        $this->httpClient->setToken($token);
+        $this->httpClient = new HttpClient();
+        $this->token = $this->authenticate($email, $password);
+        $this->httpClient->setToken($this->token);
     }
 
     public function api($name)
@@ -74,33 +68,23 @@ class Discord
         }
     }
 
+    public function gateway()
+    {
+        try {
+            $gateway = $this->api('gateway')->show();
+            $parse = parse_url($gateway['url']);
+            return $parse['host'];
+        } catch (InvalidArgumentException $e) {
+            throw new BadMethodCallException(sprintf('Undefined method called: "%s"', 'Authentication'));
+        }
+    }
+
     public function getHttpClient()
     {
         if (null === $this->httpClient) {
             $this->httpClient = new HttpClient($this->options);
         }
         return $this->httpClient;
-    }
-
-    public function setHttpClient(HttpClientInterface $httpClient)
-    {
-        $this->httpClient = $httpClient;
-    }
-
-    public function getOption($name)
-    {
-        if (!array_key_exists($name, $this->options)) {
-            throw new InvalidArgumentException(sprintf('Undefined option called: "%s"', $name));
-        }
-        return $this->options[$name];
-    }
-
-    public function setOption($name, $value)
-    {
-        if (!array_key_exists($name, $this->options)) {
-            throw new InvalidArgumentException(sprintf('Undefined option called: "%s"', $name));
-        }
-        $this->options[$name] = $value;
     }
 
     public function __call($name, $args)

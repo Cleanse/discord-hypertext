@@ -16,18 +16,17 @@ use GuzzleHttp\Exception\RequestException;
 
 class HttpClient
 {
-    protected $options = [
-        'base_uri' => 'https://discordapp.com/api/',
-        'user_agent' => 'discord-php (https://github.com/Cleanse/discord-php)'
-    ];
+    protected $token;
 
-    public $token;
-
-    public function __construct($options = [], Client $client = null)
+    public function __construct()
     {
-        $this->options = array_merge($this->options, $options);
-        $client = $client ?: new Client();
-        $this->client = $client;
+        $this->client = new Client([
+            'defaults' => [
+                'headers' => [
+                    'User-Agent' => 'discord-hypertext (https://github.com/Cleanse/discord-hypertext)',
+                ],
+            ],
+        ]);
     }
 
     public function request($httpMethod = 'GET', $path, $options = [], $auth = false)
@@ -38,7 +37,7 @@ class HttpClient
             ];
         }
         try {
-            $response = $this->client->request($httpMethod, $this->options['base_uri'].$path, $options);
+            $response = $this->client->request($httpMethod, 'https://discordapp.com/api/'.$path, $options);
         } catch (RequestException $e) {
             throw $e;
         }
