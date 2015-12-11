@@ -22,4 +22,3 @@ $password = getenv('DISCORD_PASSWORD');
 
 // Try log into Discord!
 $discord = new Discord($email_address, $password);
-print_r($discord);
