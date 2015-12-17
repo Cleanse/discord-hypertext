@@ -25,7 +25,7 @@ $discord->api('guild')->bans()->delete($guildId, $memberId);
 ```php
 $discord = new Discord($email_address, $password);
 $guildId = '<your_guild_id>';
-$guildBans = $discord->api('guild')->bans()->delete($guildId);
+$guildBans = $discord->api('guild')->bans()->show($guildId);
 print_r($guildBans);
 ```
 
