@@ -18,16 +18,14 @@ class Messages extends AbstractApi
     /**
      * @param string     $channelId
      * @param string     $content
-     * @param array      $mentions
      * @param bool|false $tts
      * @return array
      */
-    public function create($channelId, $content, $mentions = [], $tts = false)
+    public function create($channelId, $content, $tts = false)
     {
         return $this->request('POST', 'channels/' . $channelId . '/messages', [
             'json' => [
                 'content' => $content,
-                'mentions' => $mentions,
                 'tts' => $tts
             ]
         ]);
@@ -40,12 +38,11 @@ class Messages extends AbstractApi
      * @param array  $mentions
      * @return array
      */
-    public function edit($channelId, $messageId, $content, $mentions = [])
+    public function edit($channelId, $messageId, $content)
     {
         return $this->request('PATCH', 'channels/' . $channelId . '/messages/' . $messageId, [
             'json' => [
-                'content' => $content,
-                'mentions' => $mentions
+                'content' => $content
             ]
         ]);
     }
@@ -64,6 +61,7 @@ class Messages extends AbstractApi
      * @param string        $channel
      * @param int           $limit
      * @param string|null   $before
+     * @param string|null   $after
      * @return array
      */
     public function show($channel, $limit = 50, $before = null, $after = null)
