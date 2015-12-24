@@ -23,7 +23,7 @@ abstract class AbstractApi implements ApiInterface
     public function __construct(Discord $client)
     {
         $this->client = $client;
-        $this->token = $client->token['token'];
+        $this->token = $client->token();
     }
 
     public function getPerPage()

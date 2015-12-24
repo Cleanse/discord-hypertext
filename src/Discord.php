@@ -18,12 +18,15 @@ use Discord\HttpClient\HttpClient;
 class Discord
 {
     private $httpClient;
-    public $token;
+    private $token;
 
-    public function __construct($email, $password)
+    public function __construct($email = null, $password = null, $token = null)
     {
+        if (is_null($token)) {
+            $token = $this->authenticate($email, $password);
+        }
         $this->httpClient = new HttpClient();
-        $this->token = $this->authenticate($email, $password);
+        $this->token = $token;
         $this->httpClient->setToken($this->token);
     }
 
@@ -82,7 +85,7 @@ class Discord
     public function getHttpClient()
     {
         if (null === $this->httpClient) {
-            $this->httpClient = new HttpClient($this->options);
+            $this->httpClient = new HttpClient();
         }
         return $this->httpClient;
     }
@@ -94,5 +97,10 @@ class Discord
         } catch (InvalidArgumentException $e) {
             throw new BadMethodCallException(sprintf('Undefined method called: "%s"', $name));
         }
+    }
+
+    public function token()
+    {
+        return $this->token;
     }
 }
