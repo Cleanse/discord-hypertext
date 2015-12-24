@@ -21,4 +21,7 @@ $email_address = getenv('DISCORD_EMAIL');
 $password = getenv('DISCORD_PASSWORD');
 
 // Try log into Discord!
-$discord = new Discord($email_address, $password);
+$discord = new Discord($email_address, $password, $token = null);
+
+//Cache this for your next queries, pass it as the third argument
+$cachedToken = $discord->token();
