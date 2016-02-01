@@ -49,7 +49,7 @@ class User extends AbstractApi
 
     public function guilds($userId)
     {
-        return $this->request('get', 'users/' . $userId . '/guilds');
+        return $this->request('get', 'users/@me/guilds');
     }
 
     public function avatar($userId)
