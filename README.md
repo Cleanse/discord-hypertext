@@ -20,7 +20,7 @@ Changes:
 To install, run the following (assuming composer is in your PATH)
 
 ```sh
-composer require cleanse/discord-hypertext
+composer require cleanse/discord-hypertext dev-master
 ```
 Or put this in your coposer.json file
 ```json
