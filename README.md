@@ -39,6 +39,6 @@ This will install the current master branch.
 
 ##### [Check out the example][examples]
 
-[examples]: examples/
+[examples]: https://github.com/Cleanse/discord-hypertext/wiki/Examples
 [docs]: https://github.com/Cleanse/discord-hypertext/wiki
-[mentions]: docs/Channel/Messages.md
+[mentions]: https://github.com/Cleanse/discord-hypertext/wiki/(Channel)-Messages
