@@ -22,6 +22,14 @@ To install, run the following (assuming composer is in your PATH)
 ```sh
 composer require cleanse/discord-hypertext
 ```
+Or put this in your coposer.json file
+```json
+{
+	"require": {
+		"cleanse/discord-hypertext": "@dev"
+	}
+}
+```
 
 This will install the current master branch.
 
