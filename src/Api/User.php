@@ -16,6 +16,23 @@ use Discord\Helpers\Image;
 class User extends AbstractApi
 {
     /**
+     * @return mixed|\Psr\Http\Message\StreamInterface
+     */
+    public function me()
+    {
+        return $this->request('GET', 'users/@me');
+    }
+
+    /**
+     * @param $userId
+     * @return mixed|\Psr\Http\Message\StreamInterface
+     */
+    public function show($userId)
+    {
+        return $this->request('get', 'users/' . $userId);
+    }
+
+    /**
      * @param $email
      * @param $password
      * @param null $username
@@ -37,21 +54,28 @@ class User extends AbstractApi
         ]);
     }
 
-    public function me()
+    /**
+     * Leave a guild
+     * @param $guildId
+     * @return mixed|\Psr\Http\Message\StreamInterface
+     */
+    public function delete($guildId)
     {
-        return $this->request('GET', 'users/@me');
+        return $this->request('DELETE', 'users/@me/guilds/' . $guildId);
     }
 
-    public function show($userId)
-    {
-        return $this->request('get', 'users/' . $userId);
-    }
-
-    public function guilds($userId)
+    /**
+     * @return mixed|\Psr\Http\Message\StreamInterface
+     */
+    public function guilds()
     {
         return $this->request('get', 'users/@me/guilds');
     }
 
+    /**
+     * @param $userId
+     * @return string
+     */
     public function avatar($userId)
     {
         $user = $this->show($userId);

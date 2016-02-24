@@ -1,6 +1,23 @@
 ### User API
 [Back to main Readme](README.md)
 
+#### Show Your Profile
+
+```php
+$discord = new Discord($email_address, $password);
+$editUser = $discord->api('user')->me();
+```
+
+#### Show User
+
+```php
+$discord = new Discord($email_address, $password);
+$userId = '<user_id>';
+$editUser = $discord->api('user')->show($userId);
+```
+
+Returns an array with user's public data.
+
 #### Edit Your Profile
 
 ```php
@@ -15,24 +32,7 @@ Returns updated profile array.
 
 > `username`, `new_password`, and/or `avatar` can be null.
 
-#### Show Your Profile
-
-```php
-$discord = new Discord($email_address, $password);
-$editUser = $discord->api('user')->me();
-```
-
 Returns your profile data as an array.
-
-#### Show User
-
-```php
-$discord = new Discord($email_address, $password);
-$userId = '<user_id>';
-$editUser = $discord->api('user')->show($userId);
-```
-
-Returns an array with user's public data.
 
 #### Show User's Guilds
 
@@ -53,4 +53,3 @@ $editUser = $discord->api('user')->avatar($userId);
 ```
 
 Returns a string with the user's avatar.
-
