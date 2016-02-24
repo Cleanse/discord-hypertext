@@ -14,7 +14,7 @@ class Members extends AbstractApi
      * @return mixed|\Psr\Http\Message\StreamInterface
      */
 
-    public function show($guildId, $limit = 50, $offset = 1)
+    public function show($guildId, $limit = 50, $offset = 0)
     {
         return $this->request('GET', 'guilds/' . $guildId . '/members?limit=' . $limit . '&offset=' . $offset);
     }
