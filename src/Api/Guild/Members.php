@@ -6,11 +6,25 @@ use Discord\Api\AbstractApi;
 class Members extends AbstractApi
 {
     /**
+     * View a guild member list.
+     *
+     * @param $guildId
+     * @param int $limit
+     * @param int $offset
+     * @return mixed|\Psr\Http\Message\StreamInterface
+     */
+
+    public function show($guildId, $limit = 50, $offset = 1)
+    {
+        return $this->request('GET', 'guilds/' . $guildId . '/members?limit=' . $limit . '&offset=' . $offset);
+    }
+
+    /**
      * @param $guildId
      * @param $userId
      * @return mixed|\Psr\Http\Message\StreamInterface
      */
-    public function show($guildId, $userId)
+    public function member($guildId, $userId)
     {
         return $this->request('GET', 'guilds/' . $guildId . '/members/' . $userId);
     }
