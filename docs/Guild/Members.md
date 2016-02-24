@@ -1,6 +1,17 @@
 ### Guild Members API
 [Back to the Guild API](../Guild.md)
 
+#### Show Guild Member
+
+```php
+$discord = new Discord($email_address, $password);
+$guildId = '<your_guild_id>';
+$memberId = '<kicked_member_id>';
+$discord->api('guild')->members()->show($guildId, $memberId);
+```
+
+> This will return the member object for a specific member.
+
 #### Kick Guild Member
 
 ```php

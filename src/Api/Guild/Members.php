@@ -7,6 +7,16 @@ class Members extends AbstractApi
 {
     /**
      * @param $guildId
+     * @param $userId
+     * @return mixed|\Psr\Http\Message\StreamInterface
+     */
+    public function show($guildId, $userId)
+    {
+        return $this->request('GET', 'guilds/' . $guildId . '/members/' . $userId);
+    }
+
+    /**
+     * @param $guildId
      * @param $memberId
      * @return empty
      */
