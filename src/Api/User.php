@@ -81,4 +81,13 @@ class User extends AbstractApi
         $user = $this->show($userId);
         return 'https://discordapp.com/api/users/' . $userId . '/avatars/' . $user['avatar'] . '.jpg';
     }
+
+    public function createChannel($userId)
+    {
+        return $this->request('POST', 'users/@me/channels', [
+            'json' => [
+                'recipient_id' => $userId
+            ]
+        ]);
+    }
 }

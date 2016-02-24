@@ -53,3 +53,13 @@ $editUser = $discord->api('user')->avatar($userId);
 ```
 
 Returns a string with the user's avatar.
+
+#### Create Private Channel
+
+```php
+$discord = new Discord($email_address, $password);
+$userId = '<user_id>';
+$editUser = $discord->api('user')->createChannel($userId);
+```
+
+Returns an array of data in which you can get the channel id for a private message.
