@@ -90,4 +90,34 @@ class User extends AbstractApi
             ]
         ]);
     }
+    
+    /* Friends Canary */
+    public function getRelationships()
+    {
+        return $this->request('get', 'users/@me/relationships');
+    }
+    
+    public function getMutualFriends($userId)
+    {
+        return $this->request('get', 'users/' . $userId . '/relationships');
+    }
+    
+    public function addFriend($userId)
+    {
+        return $this->request('put', 'users/@me/relationships/' . $userId);
+    }
+    
+    public function blockUser($userId)
+    {
+        return $this->request('put', 'users/@me/relationships/' . $userId, [
+            'json' => [
+                'type' => 2
+            ]
+        ]);
+    }
+    
+    public function removeFriend($userId)
+    {
+        return $this->request('delete', 'users/@me/relationships/' . $userId);
+    }
 }
