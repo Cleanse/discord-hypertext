@@ -1,3 +1,5 @@
+#Discord requires a websocket connection. Look into using https://github.com/teamreflex/DiscordPHP
+
 # discord-hypertext
 An unofficial PHP API wrapper for the Discord client (http://discordapp.com).  
  
